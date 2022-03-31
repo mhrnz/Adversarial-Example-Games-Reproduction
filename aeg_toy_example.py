@@ -32,7 +32,7 @@ sns.set(style="darkgrid", font_scale=1.4)
 
 """# Preprocess data"""
 
-def create_dataloaders(n_samples):
+def preprocess_data(n_samples):
   X, y = make_moons(n_samples=n_samples, random_state=42, noise=0.07)
   y[y==0]=-1
   X_train, X_val, y_train, y_val = train_test_split(X, y, random_state=42)
@@ -53,11 +53,11 @@ from pylab import MaxNLocator
 
 def plot(train_ent, eval_ent):
   plt.plot(np.arange(len(train_ent)), train_ent)
-  plt.xlabel('epochs')
+  plt.xlabel('iterations')
   plt.ylabel('train F entropy')
   plt.show()
   plt.plot(np.arange(len(eval_ent)), eval_ent)
-  plt.xlabel('epochs')
+  plt.xlabel('iterations')
   plt.ylabel('eval F entropy')
   plt.show()
 
@@ -333,7 +333,7 @@ def main():
   args['name'] = 'Linear'
 
 
-  X_train, y_train, X_eval, y_eval = create_dataloaders(4000)
+  X_train, y_train, X_eval, y_eval = preprocess_data(4000)
   critic = Critic_Linear(2)
   train_entropies_linear, eval_entropies_linear = train(critic, X_train, y_train, X_eval, y_eval, args, 'prop3')
 
@@ -348,7 +348,7 @@ def main():
   args['norm'] = 'L_inf'
   args['name'] = 'Poly3'
   
-  X_train, y_train, X_eval, y_eval = create_dataloaders(4000)
+  X_train, y_train, X_eval, y_eval = preprocess_data(4000)
   critic = Critic_Poly(2, args['degree'])
   train_entropies_poly3, eval_entropies_poly3 = train(critic, X_train, y_train, X_eval, y_eval, args, 'prop3')
 
@@ -364,7 +364,7 @@ def main():
   args['norm'] = 'L_inf'
   args['name'] = 'Poly5'
   
-  X_train, y_train, X_eval, y_eval = create_dataloaders(4000)
+  X_train, y_train, X_eval, y_eval = preprocess_data(4000)
   critic = Critic_Poly(2, args['degree'])
   train_entropies_poly5, eval_entropies_poly5 = train(critic, X_train, y_train, X_eval, y_eval, args, 'prop3')
   
@@ -392,7 +392,7 @@ def main():
   args['name'] = 'Linear'
 
 
-  X_train, y_train, X_eval, y_eval = create_dataloaders(4000)
+  X_train, y_train, X_eval, y_eval = preprocess_data(4000)
   critic = Critic_Linear(2)
   train_entropies_linear, eval_entropies_linear = train(critic, X_train, y_train, X_eval, y_eval, args, 'prop3')
 
@@ -407,7 +407,7 @@ def main():
   args['norm'] = 'L2'
   args['name'] = 'Poly3'
   
-  X_train, y_train, X_eval, y_eval = create_dataloaders(4000)
+  X_train, y_train, X_eval, y_eval = preprocess_data(4000)
   critic = Critic_Poly(2, args['degree'])
   train_entropies_poly3, eval_entropies_poly3 = train(critic, X_train, y_train, X_eval, y_eval, args, 'prop3')
 
@@ -423,7 +423,7 @@ def main():
   args['norm'] = 'L2'
   args['name'] = 'Poly5'
   
-  X_train, y_train, X_eval, y_eval = create_dataloaders(4000)
+  X_train, y_train, X_eval, y_eval = preprocess_data(4000)
   critic = Critic_Poly(2, args['degree'])
   train_entropies_poly5, eval_entropies_poly5 = train(critic, X_train, y_train, X_eval, y_eval, args, 'prop3')
   
@@ -469,7 +469,7 @@ def main():
   args['norm'] = 'L_inf'
   args['name'] = 'Linear'
   
-  X_train, y_train, X_eval, y_eval = create_dataloaders(4000)
+  X_train, y_train, X_eval, y_eval = preprocess_data(4000)
   critic = Critic_Linear(2)
   opt_weights = train_reg(critic, X_train, y_train, args)
   print('opt_weights calculated')
@@ -479,3 +479,4 @@ def main():
 
 if __name__=='__main__':
   main()
+
