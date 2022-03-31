@@ -30,11 +30,6 @@ from sklearn.preprocessing import PolynomialFeatures
 sns.set(style="darkgrid", font_scale=1.4)
 # %config InlineBackend.figure_format = 'retina'
 
-from google.colab import drive
-drive.mount('/content/drive')
-
-cd '/content/drive/My Drive/AEG'
-
 """# Preprocess data"""
 
 def create_dataloaders(n_samples):
